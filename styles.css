@@ -1,0 +1,192 @@
+/* 蛊真人 · 魔道长生 —— 暗色仙侠风格 */
+:root{
+  --bg:#0d0f0c;
+  --bg2:#161a14;
+  --panel:#1c211a;
+  --panel2:#242b20;
+  --ink:#e8e2d0;
+  --ink-dim:#9aa089;
+  --blood:#8e1b1b;
+  --blood2:#c0392b;
+  --jade:#3fa66b;
+  --jade2:#5fd38a;
+  --gold:#c9a227;
+  --gold2:#e8c75a;
+  --border:#3a4233;
+  --shadow:0 8px 30px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Noto Serif SC",serif;
+  background:radial-gradient(ellipse at 50% 0%,#1a1f17 0%,var(--bg) 60%);
+  color:var(--ink);
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+#app{max-width:1100px;margin:0 auto;height:100vh;display:flex;flex-direction:column;position:relative}
+
+/* 通用 */
+.screen{display:none;flex:1;flex-direction:column;padding:1rem}
+.screen.active{display:flex}
+.hidden{display:none !important}
+.btn{
+  font-family:inherit;font-size:.95rem;cursor:pointer;
+  padding:.6rem 1.2rem;border-radius:6px;border:1px solid var(--border);
+  background:linear-gradient(180deg,var(--panel2),var(--panel));
+  color:var(--ink);transition:.15s;letter-spacing:1px;
+}
+.btn:hover{border-color:var(--gold);color:var(--gold2);box-shadow:0 0 12px rgba(201,162,39,.25)}
+.btn-primary{background:linear-gradient(180deg,#7a1818,var(--blood));border-color:#5a1212;color:#ffe8d0}
+.btn-primary:hover{background:linear-gradient(180deg,#9a2020,var(--blood2));color:#fff;border-color:var(--gold2)}
+.btn-warn{background:linear-gradient(180deg,#3a3010,#5a4a18);border-color:#6a5a20;color:var(--gold2)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* 开场 */
+#intro-screen{justify-content:center;align-items:center;text-align:center}
+.intro-wrap{max-width:680px}
+.game-title{
+  font-size:3.6rem;letter-spacing:.5rem;color:var(--blood2);
+  text-shadow:0 0 24px rgba(192,57,43,.6),0 2px 0 #000;
+  font-weight:700;margin-bottom:.2rem;
+}
+.game-sub{color:var(--gold2);letter-spacing:.4rem;font-size:.95rem;margin-bottom:2rem}
+.intro-text{
+  min-height:240px;font-size:1.02rem;line-height:2;color:var(--ink-dim);
+  text-align:left;background:rgba(0,0,0,.25);border:1px solid var(--border);
+  padding:1.2rem 1.5rem;border-radius:8px;white-space:pre-wrap;margin-bottom:1.5rem;
+}
+.intro-text .cursor{color:var(--blood2);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+#intro-next{margin-top:.5rem}
+
+/* 开窍大典 */
+#ceremony-screen{justify-content:center;align-items:center;text-align:center}
+.ceremony-wrap{max-width:760px;width:100%}
+#ceremony-screen h2{color:var(--gold2);letter-spacing:.3rem;margin-bottom:.6rem}
+.ceremony-desc{color:var(--ink-dim);margin-bottom:1.5rem;line-height:1.8}
+.flower-sea{
+  height:120px;background:linear-gradient(180deg,#0a1418,#0e2028);
+  border:1px solid #1f3a40;border-radius:8px;position:relative;overflow:hidden;margin-bottom:1rem;
+  box-shadow:inset 0 0 40px rgba(60,160,200,.15);
+}
+.flower-sea::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(circle,#5fd3ee 1px,transparent 2px),
+    radial-gradient(circle,#8fd3a0 1px,transparent 2px);
+  background-size:24px 24px,32px 32px;background-position:0 0,12px 16px;opacity:.5;
+}
+.sea-track{position:absolute;left:0;right:0;bottom:18px;height:2px;background:rgba(95,211,138,.25)}
+.sea-player{
+  position:absolute;bottom:0;left:0;
+  background:linear-gradient(180deg,var(--blood2),var(--blood));
+  color:#fff;padding:.2rem .5rem;border-radius:4px;font-size:.8rem;white-space:nowrap;
+  transform:translateX(-50%);transition:left .15s linear;box-shadow:0 0 12px rgba(192,57,43,.7);
+}
+.sea-mark{position:absolute;bottom:14px;font-size:.7rem;color:var(--ink-dim);transform:translateX(-50%)}
+.sea-mark::after{content:"";display:block;width:1px;height:8px;background:var(--border);margin:2px auto 0}
+.ceremony-result{min-height:2.2rem;color:var(--jade2);font-size:1.1rem;margin-bottom:1rem;line-height:1.6}
+.ceremony-result .fail{color:var(--ink-dim)}
+.ceremony-result .grade{color:var(--gold2);font-weight:700;font-size:1.3rem}
+
+/* 状态栏 */
+.status-bar{
+  display:flex;flex-wrap:wrap;gap:.4rem;padding:.6rem .8rem;
+  background:linear-gradient(180deg,var(--panel2),var(--panel));
+  border:1px solid var(--border);border-radius:8px;margin-bottom:.6rem;
+}
+.status-item{display:flex;flex-direction:column;min-width:64px;padding:0 .5rem;border-right:1px solid var(--border)}
+.status-item:last-child{border-right:none}
+.status-item .label{font-size:.7rem;color:var(--ink-dim);letter-spacing:1px}
+.status-item .val{font-size:1rem;color:var(--gold2);font-weight:700}
+
+/* 修为条 */
+.cult-bar-wrap{display:flex;align-items:center;gap:.6rem;padding:.4rem .8rem;background:var(--panel);border:1px solid var(--border);border-radius:6px;margin-bottom:.6rem}
+.cult-label{font-size:.75rem;color:var(--ink-dim);letter-spacing:1px;white-space:nowrap}
+.cult-bar{flex:1;height:10px;background:#0a0d08;border-radius:5px;overflow:hidden;border:1px solid #2a3022}
+.cult-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--jade),var(--jade2));transition:width .4s ease}
+.cult-num{font-size:.75rem;color:var(--jade2);min-width:90px;text-align:right}
+
+/* 主体 */
+.game-body{flex:1;display:grid;grid-template-columns:1.4fr 1fr;gap:.6rem;min-height:0}
+.log-panel,.action-panel{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.7rem;display:flex;flex-direction:column;min-height:0}
+.log-title,.action-title{font-size:.78rem;color:var(--gold2);letter-spacing:2px;border-bottom:1px solid var(--border);padding-bottom:.4rem;margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:center}
+.gu-count{color:var(--ink-dim);font-size:.72rem}
+.log-box{flex:1;overflow-y:auto;font-size:.85rem;line-height:1.7;color:var(--ink-dim);padding-right:.3rem}
+.log-box p{margin-bottom:.35rem}
+.log-box .me{color:var(--blood2)}
+.log-box .good{color:var(--jade2)}
+.log-box .bad{color:#e57373}
+.log-box .sys{color:var(--gold2)}
+.log-box::-webkit-scrollbar{width:6px}
+.log-box::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* 行动按钮 */
+.action-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.4rem}
+.action-btn{
+  font-family:inherit;font-size:.92rem;cursor:pointer;padding:.55rem 0;border-radius:6px;
+  border:1px solid var(--border);background:linear-gradient(180deg,var(--panel2),var(--panel));
+  color:var(--ink);transition:.15s;letter-spacing:2px;
+}
+.action-btn:hover{border-color:var(--blood2);color:#ffd0c0;background:linear-gradient(180deg,#2a1612,var(--panel));box-shadow:0 0 10px rgba(192,57,43,.3)}
+.action-btn:active{transform:translateY(1px)}
+
+/* 蛊袋 */
+.gu-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:.3rem;padding-right:.2rem}
+.gu-list::-webkit-scrollbar{width:6px}
+.gu-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.gu-card{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.4rem .6rem;border:1px solid var(--border);border-radius:6px;background:var(--bg2);
+  font-size:.82rem;transition:.15s;
+}
+.gu-card:hover{border-color:var(--gold)}
+.gu-card .gu-name{color:var(--ink)}
+.gu-card .gu-meta{font-size:.72rem;color:var(--ink-dim)}
+.gu-card.empty{justify-content:center;color:var(--ink-dim);font-size:.78rem;font-style:italic}
+.el-金{color:#d4af37}.el-木{color:#5fd35f}.el-水{color:#4fb8d4}.el-火{color:#e0593a}.el-土{color:#b88a4a}.el-灵{color:#c594ff}.el-时{color:#7fd3ff}
+
+/* 战斗 */
+#battle-screen{position:absolute;inset:0;z-index:50;background:radial-gradient(ellipse at 50% 30%,#1a0e0e 0%,#0a0707 70%);padding:1.5rem}
+.battle-wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;height:100%}
+#battle-title{text-align:center;color:var(--blood2);letter-spacing:.4rem;margin-bottom:1rem;font-size:1.4rem}
+.battle-field{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1rem}
+.battle-side{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:8px;padding:.8rem;text-align:center}
+.enemy-side{border-color:#5a2020}
+.player-side{border-color:#1f3a40}
+.entity-name{font-size:1.1rem;color:var(--gold2);margin-bottom:.5rem}
+.hp-bar{height:14px;background:#0a0a0a;border-radius:7px;overflow:hidden;border:1px solid #333}
+.hp-fill{height:100%;width:100%;background:linear-gradient(90deg,#8e1b1b,#c0392b);transition:width .3s}
+.hp-fill.player{background:linear-gradient(90deg,#2a7a45,var(--jade))}
+.hp-text{font-size:.75rem;color:var(--ink-dim);margin-top:.25rem}
+.enemy-intent{font-size:.78rem;color:var(--blood2);margin-top:.4rem;min-height:1.2rem}
+.battle-sea{font-size:.78rem;color:var(--jade2);margin-top:.3rem}
+.battle-log{flex:1;overflow-y:auto;font-size:.82rem;line-height:1.6;color:var(--ink-dim);background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:6px;padding:.6rem .8rem;margin-bottom:1rem;min-height:80px}
+.battle-log .me{color:var(--jade2)}.battle-log .foe{color:#e57373}.battle-log .sys{color:var(--gold2)}
+.battle-actions{display:flex;flex-direction:column;gap:.6rem}
+.battle-gu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.4rem}
+.battle-gu-btn{
+  font-family:inherit;cursor:pointer;padding:.5rem;border-radius:6px;
+  border:1px solid var(--border);background:var(--panel);color:var(--ink);text-align:left;font-size:.8rem;transition:.15s;
+}
+.battle-gu-btn:hover{border-color:var(--gold);box-shadow:0 0 8px rgba(201,162,39,.25)}
+.battle-gu-btn:disabled{opacity:.4;cursor:not-allowed}
+.battle-gu-btn .bg-name{display:block;color:var(--gold2);font-size:.85rem}
+.battle-gu-btn .bg-cost{font-size:.7rem;color:var(--jade2)}
+
+/* 弹窗 */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.7);display:flex;justify-content:center;align-items:center;padding:1rem}
+.modal-box{max-width:480px;width:100%;background:var(--panel);border:1px solid var(--gold);border-radius:10px;padding:1.2rem 1.4rem;box-shadow:var(--shadow)}
+.modal-title{color:var(--gold2);font-size:1.1rem;letter-spacing:2px;margin-bottom:.7rem;border-bottom:1px solid var(--border);padding-bottom:.5rem}
+.modal-body{color:var(--ink);font-size:.9rem;line-height:1.8;margin-bottom:1rem;white-space:pre-wrap;max-height:50vh;overflow-y:auto}
+.modal-actions{display:flex;gap:.5rem;justify-content:flex-end;flex-wrap:wrap}
+
+/* 响应式 */
+@media(max-width:720px){
+  .game-title{font-size:2.4rem}
+  .game-body{grid-template-columns:1fr}
+  .action-grid{grid-template-columns:1fr 1fr}
+  .status-item{min-width:54px}
+  .battle-field{grid-template-columns:1fr}
+}
